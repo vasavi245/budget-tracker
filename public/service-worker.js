@@ -1,15 +1,18 @@
+// 
 const FILES_TO_CACHE = [
     '/',
-    '/index.html',
-    'index.js',
-    'db.js',
-    'styles.css' 
-]
+    './index.html',
+    './index.js',
+    './db.js',
+    './manifest.webmanifest',
+    './styles.css',
+    './icons/icon-192x192.png',
+    './icons/icon-512x512.png'
+];
 
 const CACHE_NAME = "static-cache-v2";
 const DATA_CACHE_NAME = "data-cache-v1";
 
-// install service worker
 self.addEventListener('install', function(evt) {
     evt.waitUntil(
       caches.open(CACHE_NAME).then(cache => {
@@ -21,7 +24,6 @@ self.addEventListener('install', function(evt) {
     self.skipWaiting();
   });
 
-  // Activate service worker
   self.addEventListener("activate", function(evt) {
     evt.waitUntil(
       caches.keys().then(keyList => {
@@ -39,7 +41,6 @@ self.addEventListener('install', function(evt) {
     self.clients.claim();
   });
 
-  // fetch files
   self.addEventListener("fetch", function(evt) {
     if (evt.request.url.includes("/api/")) {
       evt.respondWith(
@@ -67,4 +68,8 @@ self.addEventListener('install', function(evt) {
         });
       })
     );
+  });
+
+  self.addEventListener('message', function (event) {
+    console.log(event);
   });

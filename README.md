@@ -11,6 +11,7 @@
   3. [Licence](#License)
   4. [Contributing](#Contributing)
   5. [Questions](#Questions)
+  6. [Links](#Links)
   ## Installation
   To install necessary dependencies, run the following commands:
   * npm install 
